@@ -19,7 +19,7 @@ class App extends Component {
       guessedLetter: "",
       currentRow: 0,
       currentTile: 0,
-      setCurrentTile: "",
+      setCurrentTile: 0,
       guessesRemaining: 6,
       isGameOver: false 
     }
@@ -36,23 +36,33 @@ guessedLetter = (letter) => {
   const newRow = [...newRows[currentRow]]
   newRow[currentTile] = letter
   newRows[currentRow] = newRow
+  console.log(newRow)
   console.log(newRows)
   this.setState({
     guessedRows: newRows,
+    currentTile: currentTile < 4 ? currentTile + 1: 0,
+    currentRow: currentTile === 4 ? currentRow + 1: currentRow
   });
 }
 
 setCurrentTile = (rowIndex, tileIndex) => {
-  this.setState({
-    currentRow: rowIndex,
-    currentTile: tileIndex
-  })
+  const { currentRow, currentTile } = this.state;
+  if(rowIndex === currentRow && tileIndex === currentTile +1){
+    this.setState({
+      currentTile: tileIndex
+    });
+  } else if(rowIndex === currentRow + 1 && tileIndex === 0){
+    this.setState({
+      currentRow: rowIndex,
+      currentTile: tileIndex,
+    })
+  }
 }
 
  
 render() {
     const { guessedRows } = this.state;
-    const guessedLetter = this.guessedLetter;
+    const guessedLetter = this.guessedLetter;    
     const rows = guessedRows.map((row, rowIndex) => {
       const boxes = row.map((boxValue, colIndex) => (
         <div key={colIndex} className="box">
@@ -72,7 +82,6 @@ render() {
       <div className="gameboard tc">
         {rows}
         <Keyboard guessedLetter={ guessedLetter } setCurrentTile={ this.setCurrentTile} />
-
       </div>
     </div>
   );
