@@ -8,7 +8,7 @@ class App extends Component {
     super(props);
     this.state = {
       word: "super",
-      guessedRows:[
+      gameBoard:[
       ['', '', '', '', ''],
       ['', '', '', '', ''],
       ['', '', '', '', ''],
@@ -31,19 +31,40 @@ class App extends Component {
 
 guessedLetter = (letter) => {
   console.log(letter)
-  const { guessedRows, currentRow, currentTile }  = this.state;
-  const newRows = [...guessedRows];
-  const newRow = [...newRows[currentRow]]
-  newRow[currentTile] = letter
-  newRows[currentRow] = newRow
-  console.log(newRow)
-  console.log(newRows)
+  const { gameBoard, currentRow, currentTile } = this.state;
+  const gameBoardArray = [...gameBoard];
+  const gameBoardRow = [...gameBoardArray[currentRow]]
+  gameBoardRow[currentTile] = letter;
+  gameBoardArray[currentRow] = gameBoardRow;
+  console.log(gameBoardArray)
+  console.log(gameBoardRow)
   this.setState({
-    guessedRows: newRows,
+    gameBoard: gameBoardArray,
     currentTile: currentTile < 4 ? currentTile + 1: 0,
     currentRow: currentTile === 4 ? currentRow + 1: currentRow
   });
 }
+
+//gameBoard === guessedRows
+//gameBoardArray === newRows
+//gameBoardRow === newRow
+
+//rewrite code for better feel and understandingzw
+// guessedLetter = (letter) => {
+//   console.log(letter)
+//   const { guessedRows, currentRow, currentTile }  = this.state;
+//   const newRows = [...guessedRows];
+//   const newRow = [...newRows[currentRow]]
+//   newRow[currentTile] = letter
+//   newRows[currentRow] = newRow
+//   console.log(newRow)
+//   console.log(newRows)
+//   this.setState({
+//     guessedRows: newRows,
+//     currentTile: currentTile < 4 ? currentTile + 1: 0,
+//     currentRow: currentTile === 4 ? currentRow + 1: currentRow
+//   });
+// }
 
 setCurrentTile = (rowIndex, tileIndex) => {
   const { currentRow, currentTile } = this.state;
@@ -61,9 +82,9 @@ setCurrentTile = (rowIndex, tileIndex) => {
 
  
 render() {
-    const { guessedRows } = this.state;
+    const { gameBoard } = this.state;
     const guessedLetter = this.guessedLetter;    
-    const rows = guessedRows.map((row, rowIndex) => {
+    const rows = gameBoard.map((row, rowIndex) => {
       const boxes = row.map((boxValue, colIndex) => (
         <div key={colIndex} className="box">
           {boxValue}
