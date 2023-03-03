@@ -7,21 +7,24 @@ function Keyboard(props) {
     ["Z", "X", "C", "V", "B", "N", "M"],
   ];
 
-  const handleButtonClick = (letter, rowIndex, tileIndex) => {
+  // const keyClocked =
+
+  const keyClicked = (letter, rowIndexOnKeyboard, tileIndexOnKeyboard) => {
+    //props is from app.js
     props.guessedLetter(letter);
-    props.setCurrentTile(rowIndex, tileIndex);
+    props.setCurrentTile(rowIndexOnKeyboard, tileIndexOnKeyboard);
   };
+  
 
-
-  const keyboardRows = keys.map((row, rowIndex) => (
-    <KeyboardRow 
-    key={rowIndex} 
-    row={row} 
-    rowIndex={rowIndex} 
-    onClick={handleButtonClick} />
+  const rowsOnKeyboard = keys.map((rowIndexOnKeyboard, tileIndexOnKeyboard) => (
+    <CreateKeyboardRows
+    key={tileIndexOnKeyboard} 
+    row={rowIndexOnKeyboard} 
+    rowIndex={tileIndexOnKeyboard} 
+    onClick={keyClicked} />
   ));
 
-function KeyboardRow(props) {
+function CreateKeyboardRows(props) {
   return (
     <div className="tc">
       {props.row.map((letter, tileIndex) => (
@@ -47,7 +50,7 @@ function KeyboardButton(props) {
 }
 
 
-  return <div className="flex flex-column justify-center">{keyboardRows}</div>;
+  return <div className="flex flex-column justify-center">{rowsOnKeyboard}</div>;
 }
 
 export default Keyboard;
