@@ -1,36 +1,60 @@
 import React from "react";
+import Keyboard from "./keyboard";
 
+function GameTiles(props) {
+  const { word, gameBoard, guessedLetter } = props;
 
-function GameTiles() {
-guessedLetter = (letter) => {
-  console.log(letter)
-  const { gameBoard, currentRow, currentTile } = this.state;
-  const gameBoardArray = [...gameBoard];
-  const gameBoardRow = [...gameBoardArray[currentRow]]
-  gameBoardRow[currentTile] = letter;
-  gameBoardArray[currentRow] = gameBoardRow;
-  console.log(gameBoardArray)
-  console.log(gameBoardRow)
-  this.setState({
-    gameBoard: gameBoardArray,
-    currentTile: currentTile < 4 ? currentTile + 1: 0,
-    currentRow: currentTile === 4 ? currentRow + 1: currentRow
-  });
-}
+  const isGameOver = gameBoard[gameBoard.length - 1].every((tile) =>
+    tile !== "" ? word.includes(tile.toLowerCase()) : false
+  );
 
-setCurrentTile = (rowIndex, tileIndex) => {
-  const { currentRow, currentTile } = this.state;
-  if(rowIndex === currentRow && tileIndex === currentTile +1){
-    this.setState({
-      currentTile: tileIndex
-    });
-  } else if(rowIndex === currentRow + 1 && tileIndex === 0){
-    this.setState({
-      currentRow: rowIndex,
-      currentTile: tileIndex,
-    })
+  const getTileColor = (letter, tileIndex) => {
+    const correctLetter = word[tileIndex];
+    const guessedLetterIndex = gameBoard.findIndex(
+      (row) => row.includes(letter.toUpperCase())
+    );
+    const guessedLetterTileIndex = gameBoard[guessedLetterIndex].indexOf(
+      letter.toUpperCase()
+    );
+
+    if (guessedLetterTileIndex === tileIndex) {
+      return "green";
+    } else if (correctLetter === letter.toLowerCase()) {
+      return "yellow";
+    } else {
+      return "default";
+    }
+  };
+
+  const rowsOnGameBoard = gameBoard.map((row, rowIndex) => (
+    <div key={rowIndex} className="row">
+      {row.map((tile, tileIndex) => (
+        <GameTile
+          key={tileIndex}
+          tile={tile}
+          color={getTileColor(tile, tileIndex)}
+        />
+      ))}
+    </div>
+  ));
+
+  function GameTile(props) {
+    const { tile, color } = props;
+
+    return (
+      <div className={`box ${color}`}>
+        {tile === "" ? "" : tile.toUpperCase()}
+      </div>
+    );
   }
-}
+
+  return (
+    <div className="gameboard tc">
+      {rowsOnGameBoard}
+      <Keyboard guessedLetter={guessedLetter} getTileColor={getTileColor} />
+      {isGameOver && <h2>Game Over!</h2>}
+    </div>
+  );
 }
 
 export default GameTiles;

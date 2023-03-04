@@ -7,7 +7,6 @@ function Keyboard(props) {
     ["Z", "X", "C", "V", "B", "N", "M"],
   ];
 
-  // const keyClocked =
 
   const keyClicked = (letter, rowIndexOnKeyboard, tileIndexOnKeyboard) => {
     //props is from app.js
@@ -16,19 +15,19 @@ function Keyboard(props) {
   };
   
 
-  const rowsOnKeyboard = keys.map((rowIndexOnKeyboard, tileIndexOnKeyboard) => (
-    <CreateKeyboardRows
+  const keyClickedToTile = keys.map((rowIndexOnKeyboard, tileIndexOnKeyboard) => (
+    <KeyboardRows
     key={tileIndexOnKeyboard} 
     row={rowIndexOnKeyboard} 
     rowIndex={tileIndexOnKeyboard} 
     onClick={keyClicked} />
   ));
 
-function CreateKeyboardRows(props) {
+function KeyboardRows(props) {
   return (
     <div className="tc">
       {props.row.map((letter, tileIndex) => (
-        <KeyboardButton
+        <KeyboardButtons
           key={tileIndex}
           letter={letter}
           onClick={() => props.onClick(letter, props.rowIndex, tileIndex)}
@@ -38,7 +37,7 @@ function CreateKeyboardRows(props) {
   );
 }
 
-function KeyboardButton(props) {
+function KeyboardButtons(props) {
   return (
     <button
       className="tc ma2 pa3 bg-light-gray br3 w3 pointer hover-bg-moon-gray"
@@ -50,7 +49,7 @@ function KeyboardButton(props) {
 }
 
 
-  return <div className="flex flex-column justify-center">{rowsOnKeyboard}</div>;
+  return <div className="flex flex-column justify-center">{keyClickedToTile}</div>;
 }
 
 export default Keyboard;

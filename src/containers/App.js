@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Keyboard from "../components/keyboard";
+// import GameTiles from "../components/gameTiles";
 
 class App extends Component {
   constructor(props) {
@@ -45,16 +46,16 @@ class App extends Component {
       });
     }
     
-    setCurrentTile = (rowIndex, tileIndex) => {
+    setCurrentTile = (setRowIndex, setTileIndex) => {
       const { currentRow, currentTile } = this.state;
-      if(rowIndex === currentRow && tileIndex === currentTile +1){
+      if(setRowIndex === currentRow && setTileIndex === currentTile +1){
         this.setState({
-          currentTile: tileIndex
+          currentTile: setTileIndex
         });
-      } else if(rowIndex === currentRow + 1 && tileIndex === 0){
+      } else if(setRowIndex === currentRow + 1 && setTileIndex === 0){
         this.setState({
-          currentRow: rowIndex,
-          currentTile: tileIndex,
+          currentRow: setRowIndex,
+          currentTile: setTileIndex,
         })
       }
     }
