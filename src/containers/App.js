@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import GameBoard from "../components/GameBoard";
 import Keyboard from "../components/Keyboard";
-// import GameTiles from "../components/gameTiles";
+import GameTiles from "../components/GameTiles";
 
 class App extends Component{
   constructor(props) {
@@ -25,11 +25,6 @@ class App extends Component{
      isGameOver: false,
     };
   }
-
-  wordOfDay = (word) => {
-    this.state({ word: word });
-  };
-
 
     guessedLetter = (letter) => {
       console.log(letter)
@@ -68,7 +63,7 @@ class App extends Component{
           <div className="tc">
               <h1 className="f1 bb bw2">Wordle Clone</h1>
             <div className="tc">
-              <GameBoard  gameBoard={gameBoard}/>
+              <GameBoard  gameBoard={gameBoard} GameTiles={GameTiles}/>
               <Keyboard 
                 guessedLetter={this.guessedLetter}
                 setCurrentTile={this.setCurrentTile}

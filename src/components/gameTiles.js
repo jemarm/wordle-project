@@ -1,9 +1,59 @@
-// import React from "react";
-// import Keyboard from "./keyboard";
+import React from "react";
+// import Keyboard from "./Keyboard";
+
+function GameTiles(props){
+  const { word, gameBoard, guessedLetter, currentRow, currentTile, Keyboard } = props;
+
+  const wordOfDay = ({word})
+
+  const gameTile = (tile) =>{
+    const gameBoardArray = [...gameBoard];
+    const gameBoardRow = [...gameBoardArray[currentRow]]
+    gameBoardRow[currentTile] = tile;
+    return gameBoardRow[currentTile]
+  }
+  const modifiedGameBoard = gameTile(guessedLetter);
+console.log(modifiedGameBoard);
+
+  
+return (
+  <div className="gameboard tc">
+  { gameTile }
+  { wordOfDay }
+  {/* <Keyboard 
+    guessedLetter={this.guessedLetter}
+  />  */}
+  </div>
+)
+  //gameBoard.map to each individual tile ==== gameTile
 
 
+  //variable of endGame = (the word of day) =>{
+    //if gameTile.each === "s u p e r" THEN
+    //isGameOver === true
+  //}
 
-// export default GameTiles;
+  //variable of coloring tiles = (guessedLetter, indexoftile) => {
+    //if guessed letter index === index of wordOfDay index THEN
+    //gameTile index === 'green'
+    //ELSE if guessed letter index === in wordOfDay index THEN
+    //gameTile index === 'yellow'
+    //ELSE keyClicked === can be used and TILE === grey
+  //}
+
+}
+export default GameTiles;
+
+// coloured tiles dependent on letter chosen:
+// green tile if letter is in right tile
+// yellow tile if letter is in a tile but wrong position
+// grey if letter is not in the word
+
+// need to add unavailibilty of keyboard letter if letter is not in keyboard 
+
+// end game if letters === wordOfDay
+
+//need to add color and font to tiles letters 
 
 // function GameTiles(props) {
 //   const { word, gameBoard, guessedLetter } = props;

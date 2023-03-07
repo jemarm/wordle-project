@@ -14,14 +14,16 @@ function Keyboard(props) {
     props.setCurrentTile(rowIndexOnKeyboard, tileIndexOnKeyboard);
   };
   
-
-  const keyClickedToTile = keys.map((rowIndexOnKeyboard, tileIndexOnKeyboard) => (
-    <KeyboardRows
-    key={tileIndexOnKeyboard} 
-    row={rowIndexOnKeyboard} 
-    rowIndex={tileIndexOnKeyboard} 
-    onClick={keyClicked} />
-  ));
+function KeyboardButtons(props) {
+  return (
+    <button
+      className="tc ma2 pa3 bg-light-gray br3 w3 pointer hover-bg-moon-gray"
+      onClick={props.onClick}
+    >
+      {props.letter.toUpperCase()}
+    </button>
+  );
+}
 
 function KeyboardRows(props) {
   return (
@@ -37,16 +39,14 @@ function KeyboardRows(props) {
   );
 }
 
-function KeyboardButtons(props) {
-  return (
-    <button
-      className="tc ma2 pa3 bg-light-gray br3 w3 pointer hover-bg-moon-gray"
-      onClick={props.onClick}
-    >
-      {props.letter.toUpperCase()}
-    </button>
-  );
-}
+
+const keyClickedToTile = keys.map((rowIndexOnKeyboard, tileIndexOnKeyboard) => (
+  <KeyboardRows
+  key={tileIndexOnKeyboard} 
+  row={rowIndexOnKeyboard} 
+  rowIndex={tileIndexOnKeyboard} 
+  onClick={keyClicked} />
+));
 
 
   return <div className="flex flex-column justify-center">{keyClickedToTile}</div>;
