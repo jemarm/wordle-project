@@ -27,14 +27,14 @@ class App extends Component{
   }
 
     guessedLetter = (letter) => {
-      console.log(letter)
+      // console.log(letter)
       const { gameBoard, currentRow, currentTile } = this.state;
       const gameBoardArray = [...gameBoard];
       const gameBoardRow = [...gameBoardArray[currentRow]]
       gameBoardRow[currentTile] = letter;
       gameBoardArray[currentRow] = gameBoardRow;
-      console.log(gameBoardArray)
-      console.log(gameBoardRow)
+      // console.log(gameBoardArray)
+      // console.log(gameBoardRow)
       this.setState({
         gameBoard: gameBoardArray,
         currentTile: currentTile < 4 ? currentTile + 1: 0,
@@ -63,11 +63,18 @@ class App extends Component{
           <div className="tc">
               <h1 className="f1 bb bw2">Wordle Clone</h1>
             <div className="tc">
-              <GameBoard  gameBoard={gameBoard} GameTiles={GameTiles}/>
+              <GameBoard  gameBoard={gameBoard}   />
               <Keyboard 
                 guessedLetter={this.guessedLetter}
                 setCurrentTile={this.setCurrentTile}
               /> 
+              <GameTiles 
+            word={this.state.word} 
+            guessedLetter={this.state.guessedLetter} 
+            currentRow={this.state.currentRow} 
+            currentTile={this.state.currentTile} 
+            isGameOver={this.state.isGameOver}
+          />
             </div>
           </div>
         )

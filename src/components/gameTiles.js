@@ -1,30 +1,41 @@
 import React from "react";
-// import Keyboard from "./Keyboard";
 
 function GameTiles(props){
-  const { word, gameBoard, guessedLetter, currentRow, currentTile, Keyboard } = props;
+  const { word, gameBoard  } = props;
+  console.log(props)
 
-  const wordOfDay = ({word})
+  const wordOfDay = word;
 
-  const gameTile = (tile) =>{
-    const gameBoardArray = [...gameBoard];
-    const gameBoardRow = [...gameBoardArray[currentRow]]
-    gameBoardRow[currentTile] = tile;
-    return gameBoardRow[currentTile]
-  }
-  const modifiedGameBoard = gameTile(guessedLetter);
-console.log(modifiedGameBoard);
+  const getTileColor = (letter, tileIndex) => {
+    const correctLetter = wordOfDay[tileIndex];
+    const guessedLetterIndex = gameBoard.findIndex(
+      (row) => row.includes(letter.toUpperCase())
+    );
+    const guessedLetterTileIndex = gameBoard[guessedLetterIndex].indexOf(
+      letter.toUpperCase()
+    );
 
-  
-return (
-  <div className="gameboard tc">
-  { gameTile }
-  { wordOfDay }
-  {/* <Keyboard 
-    guessedLetter={this.guessedLetter}
-  />  */}
-  </div>
-)
+    if (guessedLetterTileIndex === tileIndex) {
+      return "green";
+    } else if (correctLetter === letter.toLowerCase()) {
+      return "yellow";
+    } else {
+      return "default";
+    }
+  };
+
+
+  return (
+    <div className="gameboard tc">
+      { wordOfDay }
+      { getTileColor}
+    </div>
+  );
+}
+
+export default GameTiles;
+
+
   //gameBoard.map to each individual tile ==== gameTile
 
 
@@ -40,9 +51,6 @@ return (
     //gameTile index === 'yellow'
     //ELSE keyClicked === can be used and TILE === grey
   //}
-
-}
-export default GameTiles;
 
 // coloured tiles dependent on letter chosen:
 // green tile if letter is in right tile
