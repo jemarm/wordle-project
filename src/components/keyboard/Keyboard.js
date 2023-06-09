@@ -7,7 +7,7 @@ const Keyboard = ({ guess, handleGuess }) => {
 
   return (
     <div className='keyboard'>
-      
+
     </div>
   );
 }
