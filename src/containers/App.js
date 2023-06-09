@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import GameBoard from "../components/gameboard/GameBoard";
+import Keyboard from "../components/keyboard/Keyboard";
 
 const App = () => {
   const [word, setWord] = useState("super");
@@ -42,7 +43,7 @@ const submitGuess = () => {
       <h1 className="f1 bb bw2">Wordle Clone</h1>
       <div>
       <GameBoard guesses={guesses} />
-        {/* <Keyboard guess={guess} handleGuess={handleGuess} />  */}
+      <Keyboard guess={guess} handleGuess={handleGuess} /> 
       </div>
     </div>
   );

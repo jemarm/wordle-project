@@ -2,7 +2,6 @@ import React from "react";
 import "./GameBoard.styles.css";
 
 const GameBoard = ({ guesses }) => {
-  console.log(Array.isArray(guesses));
   return (
     <div className="gameboard">
       {guesses.map((guesses, index) => (
