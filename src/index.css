@@ -23,13 +23,13 @@ nav h1 {
   font-size: 45px;
 }
 
-/* .game {
+.game {
   width: 100vw;
-  height: calc(100vh - 170px);
+  height: calc(100vh - 120px);
   display: flex;
   align-items: center;
   padding-top: 50px;
   flex-direction: column;
-} */
+} 
 
 

@@ -6,7 +6,7 @@ import "./GameBoard.styles.css";
 
 function GameBoard() {
   return (
-    <div className="board">
+    <div className="gameboard">
       {" "}
       <div className="row">
         <Letter letterPos={0} attemptVal={0} />

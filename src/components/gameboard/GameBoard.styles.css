@@ -1,18 +1,17 @@
-.board {
-  width: 450px;
+.gameboard {
+  width: 400px;
   height: 550px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
 }
 
 .row {
-  flex: 1;
+  flex: 33%;
   display: flex;
   flex-direction: row;
   margin: 5px;
 }
-
 
 .letter {
   flex: 33%;
