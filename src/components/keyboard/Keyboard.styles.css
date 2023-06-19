@@ -44,3 +44,15 @@
 #big {
   width: 100px;
 }
+
+#correct {
+  background-color: #528d4e;
+}
+
+#almost {
+  background-color: #b49f39;
+}
+
+#error {
+  background-color: #3a393c;
+}
