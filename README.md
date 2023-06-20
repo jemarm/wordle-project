@@ -1,3 +1,33 @@
+# Wordle Clone
+
+A simple clone of the popular game Wordle built with React. Guess the correct word by selecting letters from the virtual keyboard. The game provides feedback on the correctness of each letter and allows for multiple attempts.
+
+## Demo
+
+![Demo](demo.gif)
+
+## Features
+
+- Interactive virtual keyboard for selecting letters
+- Real-time feedback on the correctness of each letter
+- Multiple attempts to guess the word
+- Simple and intuitive user interface
+- Responsive design for different screen sizes
+
+## Technologies Used
+
+- React
+- JavaScript
+- CSS
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+
+git clone https://github.com/your-username/wordle-clone.git
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
